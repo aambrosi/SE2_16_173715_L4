@@ -1,0 +1,83 @@
+<!--
+X i dipendenti hanno un id
+se faccio ricerca devono uscirmii dati del tipendente
+X id nome cognome livello e stipendio
+
+id diendente che non c'è mi da vuoto, non da errore
+X bottone per nascondere e riprendere il form
+
+se uno non esiste, posso aggiungerlo
+X bottone per inserire
+inserisco e azzero i campi
+
+X i campi sono modificabili
+
+se metto un nuivo dipendente senza mettere l'id mi deve inserire il primo id libero
+
+posso cancellare dipendenti, cerco 4 lo cancello e si chiude il form
+
+id posso mettere qualsiasi numero e quello dopo avra quel numero + 1
+
+X dividere model view e controller
+
+X file a parte per script
+
+app.use('/script'), express.static(--dirname + 'scripts/'));
+<script src = '/script/script.js'></script>
+-->
+
+<html>
+    <head>
+        <title>SE16 - Lab4</title>
+        <script src="control.js">
+        </script>
+    </head>
+    <body>
+        <h2>
+            Software Engineer 2016: Lab4
+        </h2>
+        <br>
+        Inserisci ID dipendente:
+        <input type="number" id="idEmployeeToFind">
+        
+        <input type="button" value="Cerca" onclick="findEmployee();">
+        
+        <input type="button" value="Elimina" onclick="deleteEmployee();">
+        <br>
+        <br>
+        <input type="button" value="Visualizza Form" onclick="discoverForm(); resetFields();">
+        <br>
+        <br>
+        
+        <div id="employeeDataDiv" hidden="hidden">
+            <fieldset>
+                <legend>
+                    Dati del dipendente cercato:
+                </legend>
+                ID:
+                <br>
+                <input type="number" id="idEmployee">
+                <br>
+                Nome:
+                <br>
+                <input type="text" id="firstNameEmployee"> 
+                <br>
+                Cognome:
+                <br>
+                <input type="text" id="lastNameEmployee">
+                <br>
+                Livello:
+                <br>
+                <input type="number" id="levelEmployee">
+                <br>
+                Stipendio:
+                <br>
+                <input type="number" id="salaryEmployee">
+                $
+                <br>
+                <br>
+                <input type="button" value="Aggiungi/Modifica" onclick="addEmployee(); discoverForm();" >
+            </fieldset>
+        </div>                   
+    </body>
+</html>
