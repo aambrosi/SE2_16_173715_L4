@@ -32,7 +32,7 @@ app.use('/script'), express.static(--dirname + 'scripts/'));
         <script src="control.js">
         </script>
     </head>
-    <body>
+    <body onload="load();">
         <h2>
             Software Engineer 2016: Lab4
         </h2>
@@ -76,7 +76,7 @@ app.use('/script'), express.static(--dirname + 'scripts/'));
                 $
                 <br>
                 <br>
-                <input type="button" value="Aggiungi/Modifica" onclick="addEmployee(); discoverForm();" >
+                <input type="button" value="Aggiungi/Modifica" onclick="addEmployee();" >
             </fieldset>
         </div>                   
     </body>
