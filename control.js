@@ -53,7 +53,7 @@ function Employee(id, firstName, lastName, level, salary) {
 function Model() {
     "use strict";
     this.employees = [];
-    this.lastId = 0;
+    this.maxId = 0;
     var nextPos = 0;
     
 /**
@@ -97,7 +97,9 @@ function Model() {
  */
     this.addEmployee = function (id, firstName, lastName, level, salary) {
         this.employees[nextPos] = new Employee(id, firstName, lastName, level, salary);
-        this.lastId = id;
+        if (this.maxId < id) {
+            this.maxId = id;
+        }
         nextPos += 1;
     };
     
@@ -107,17 +109,8 @@ function Model() {
      * @return Restituisce il prossimo id libero.
      */
     this.getNextId = function () {
-        this.lastId = parseInt(this.lastId, 10) + 1;
-        return this.lastId;
-    };
-    
-    /**
-     * @brief Utilizzo questa funzione quando aggiungo un nuovo dipendente con un id deciso dall'utente.
-     * @param [in|out] Ricevo in ingresso l'id dell'ultimo dipendente inserito.
-     * @return Nessun parametro di ritorno.
-     */
-    this.setLastId = function (id) {
-        this.lastId = id;
+        this.maxId = parseInt(this.maxId, 10) + 1;
+        return this.maxId;
     };
 }
 
@@ -128,8 +121,8 @@ function Model() {
 var model = new Model();
 //aggiungo dipendenti come esempio
 model.addEmployee(1, "Giacomo", "Rossi", 5, 1800);
-model.addEmployee(2, "Giuseppe", "Verdi", 2, 1200);
-model.addEmployee(3, "Mario", "Bianchi", 10, 3500);
+model.addEmployee(27, "Giuseppe", "Verdi", 2, 1200);
+model.addEmployee(10, "Mario", "Bianchi", 10, 3500);
 
 
 function load() {
@@ -195,10 +188,11 @@ function findEmployee() {
             document.getElementById("levelEmployee").value = e.getLevel();
             document.getElementById("salaryEmployee").value = e.getSalary();
         } else {
-            alert("Dipendente non trovato!");
+            window.alert("Dipendente non trovato!");
+            discoverForm();
         }
     } else {
-        alert("L'id inserito non è ben formato!");
+        window.alert("L'id inserito non è ben formato!");
         resetFields();
     }
 }
@@ -217,13 +211,13 @@ function deleteEmployee() {
     if (id !== "" && id >= 0) {
         r = model.deleteEmployee(id);
         if (r === 0) {
-            alert("Stai tentando di eliminare un dipendente inesistente!");
+            window.alert("Stai tentando di eliminare un dipendente inesistente!");
         } else {
-            alert("Eliminato!");
+            window.alert("Eliminato!");
             resetFields();
         }
     } else {
-        alert("L'id inserito non è ben formato!");
+        window.alert("L'id inserito non è ben formato!");
         resetFields();
     }
     
@@ -249,25 +243,25 @@ function addEmployee() {
         //controllo su ogni campo che ci sia inserito qualcosa e che sia sensato
         firstName = document.getElementById("firstNameEmployee").value;
         if (firstName.length == 0) {
-            alert("Inserire il nome!");
+            window.alert("Inserire il nome!");
             return;
         }
         
         lastName = document.getElementById("lastNameEmployee").value;
         if (lastName.length == 0) {
-            alert("Inserire il cognome!");
+            window.alert("Inserire il cognome!");
             return;
         }
         
         level = document.getElementById("levelEmployee").value;
         if (level == "" || level < 0) {
-            alert ("Inserire un livello valido!");
+            window.alert("Inserire un livello valido!");
             return;
         }
         
         salary = document.getElementById("salaryEmployee").value;
         if (salary == "" || salary < 0) {
-            alert("Inserire uno stipendio valido!");
+            window.alert("Inserire uno stipendio valido!");
             return;
         }
         
@@ -278,12 +272,13 @@ function addEmployee() {
             e.setLastName(lastName);
             e.setLevel(level);
             e.setSalary(salary);
-            alert("Dipendente modificato!");
+            window.alert("Dipendente modificato!");
         } else {
             model.addEmployee(id, firstName, lastName, level, salary);
-            alert("Dipendente aggiunto!");
+            document.getElementById("idEmployee").value = id;
+            window.alert("Dipendente aggiunto!");
         }
     } else {
-        alert("L'id inserito non è ben formato!");
+        window.alert("L'id inserito non è ben formato!");
     }
 }
