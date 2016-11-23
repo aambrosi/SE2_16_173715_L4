@@ -1,0 +1,10 @@
+/*
+utilizzo queste due classi per rendere o meno visibile qualcosa
+*/
+.hidden{
+	display:none
+}
+
+.visible{
+	display:block
+}
